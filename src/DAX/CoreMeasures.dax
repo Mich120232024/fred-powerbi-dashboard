@@ -1,0 +1,20 @@
+// USD Strength Index
+USD_Strength = 
+CALCULATE(
+    AVERAGE('FRED Data'[DTWEXB]),
+    LASTDATE('FRED Data'[DATE])
+)
+
+// Real Interest Rate
+Real_Rate = 
+[Federal Funds Rate] - [Core PCE YoY]
+
+// Economic Growth Score
+Growth_Score = 
+AVERAGEX(
+    FILTER(
+        ALL('Indicators'),
+        'Indicators'[Type] = "Growth"
+    ),
+    [Normalized Value]
+)
